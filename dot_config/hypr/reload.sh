@@ -8,3 +8,6 @@ else
 	killall waybar
 	waybar &
 fi
+
+# update chezmoi
+chezmoi update
