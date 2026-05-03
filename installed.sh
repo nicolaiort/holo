@@ -53,6 +53,7 @@ sudo pacman -S qemu-user-static-binfmt qemu-user-static
 yay -S kind
 sudo pacman -S jq yq
 yay -S github-copilot-cli
+sudo pacman -S gitleaks
 
 sudo pacman -S pandoc
 yay -S python-weasyprint
