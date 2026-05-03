@@ -1,0 +1,49 @@
+#!/bin/bash
+#!/bin/zsh
+
+# Base
+alias yeet='rm -rf'
+function updateall(){
+    pacman -Syu
+    yay -Syu
+    kubectl krew update
+    kubectl krew upgrade
+}
+
+# Node
+alias pn='pnpm'
+
+# Git
+alias branch='git branch --show-current'
+alias reset='git reset --hard origin/$(branch)'
+alias amend='git commit --amend --no-edit'
+alias ammend='echo "Did you mean amend you stupid fucker? Yes you did." && amend'
+alias force='git push --force-with-lease'
+alias push='git push'
+alias pull='git pull --rebase'
+
+# Docker
+alias docker='podman'
+
+# Kubernetes
+## General
+alias k='kubectl'
+alias kns='kubectl config set-context --current --namespace'
+alias kctx='kubectl config use-context'
+
+alias netshoot='kubectl run tmp-shell --rm -i --tty --image nicolaka/netshoot'
+function netshootdebug(){
+    kubectl debug "$1" -it --image=nicolaka/netshoot
+}
+
+# Terraform
+alias tf='tofu'
+
+# Dev setup
+alias devsetup='~/.local/bin/devsetup'
+
+# Minio
+alias mc="mcli"
+
+# Task
+alias task='go-task'

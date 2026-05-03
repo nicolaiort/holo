@@ -1,0 +1,34 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# History settings
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTCONTROL=ignoredups:erasedups
+HISTIGNORE="ls:ll:cd:pwd:exit"
+shopt -s histappend
+
+source <(fzf --bash)
+export EDITOR=vim
+
+eval "$(starship init bash)"
+
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  mkdir -p ~/.cache
+  exec start-hyprland > ~/.cache/hyprland.log 2>&1
+fi
+export PATH="$HOME/.local/bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+source ~/.aliases
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash --disable-up-arrow)"
+ssh() { TERM=xterm-256color command ssh "$@"; }
