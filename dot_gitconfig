@@ -1,0 +1,16 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = /home/niggl/.ssh/sign.pub
+	name = Nicolai Ort
+	email = info@nicolai-ort.com
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

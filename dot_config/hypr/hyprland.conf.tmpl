@@ -22,6 +22,7 @@
 ### MONITORS ###
 ################
 
+{{- if eq .chezmoi.hostname "blackpanther" }}
 
 # Left portrait (ASUS) — logical 1440x2560, vertically centered in 2880px total height
 monitor=HDMI-A-2,2560x1440@60,0x620,1,transform,3
@@ -38,6 +39,13 @@ workspace=2,monitor:DP-2
 workspace=3,monitor:HDMI-A-2
 workspace=4,monitor:HDMI-A-1
 workspace=5,monitor:DP-1
+
+{{- else if eq .chezmoi.hostname "nicolai-xps9320" }}
+
+monitor=,preferred,auto,auto
+#exernal portable #monitor=DP-4,1920x1080,-1920x0,1
+
+{{- end}}
 
 ###################
 ### MY PROGRAMS ###
@@ -202,6 +210,23 @@ input {
 
     sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
 
+    touchpad {
+        natural_scroll = false
+        disable_while_typing = true
+        clickfinger_behavior = true
+        scroll_factor = 0.5
+    }
+}
+
+# https://wiki.hyprland.org/Configuring/Variables/#gestures
+gestures {
+    workspace_swipe_distance = 700
+    workspace_swipe_cancel_ratio = 0.2
+    workspace_swipe_min_speed_to_force = 5
+    workspace_swipe_direction_lock = true
+    workspace_swipe_invert = false
+    workspace_swipe_direction_lock_threshold = 10
+    workspace_swipe_create_new = true
 }
 
 # https://wiki.hyprland.org/Configuring/Variables/#gestures

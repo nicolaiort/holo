@@ -8,7 +8,12 @@
 
 background {
     monitor =
+    
+    {{ if eq .chezmoi.hostname "blackpanther" }}
     path = $HOME/Pictures/Wallpapers/gits_split.jpg
+    {{ else if eq .chezmoi.hostname "nicolai-xps9320" }}
+    path = $HOME/Pictures/Wallpapers/ancient_magnus.jpg
+    {{ end }}
 
 }
 

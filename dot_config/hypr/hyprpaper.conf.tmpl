@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.hostname "blackpanther" }}
 wallpaper {
     monitor = DP-1
     path = ~/Pictures/Wallpapers/gits_split.jpg
@@ -21,5 +22,13 @@ wallpaper {
     path = ~/Pictures/Wallpapers/anime_cyberpink_city.jpg
     fit_mode = cover
 }
+{{ else if eq .chezmoi.hostname "nicolai-xps9320" }}
+wallpaper {
+    monitor = 
+    path = ~/Pictures/Wallpapers/ancient_magnus.jpg
+    fit_mode = cover
+}
+{{ end }}
+
 
 splash = false
