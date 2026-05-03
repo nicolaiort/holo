@@ -30,6 +30,10 @@ alias pull='git pull --rebase'
 # Docker
 alias docker='podman'
 
+# General dev
+alias release="shikai"
+alias copilotfree="COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='' COPILOT_MODEL=minimax-m2.5-free copilot"
+
 # Kubernetes
 ## General
 alias k='kubectl'
