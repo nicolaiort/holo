@@ -1,0 +1,39 @@
+## ============================================================================
+## Cyberpunk Theme for Atuin
+## ============================================================================
+## A neon-drenched, futuristic theme for your shell history
+##
+## Installation:
+## 1. Save this file to: ~/.config/atuin/themes/cyberpunk.toml
+## 2. Add to ~/.config/atuin/config.toml:
+##    [theme]
+##    name = "cyberpunk"
+## 3. Reload your shell
+##
+## Color Palette:
+##   @ansi_(51)  = Neon Cyan
+##   @ansi_(201) = Neon Magenta
+##   @ansi_(46)  = Neon Green
+##   @ansi_(226) = Neon Yellow
+##   @ansi_(213) = Neon Pink
+##   @ansi_(39)  = Neon Blue
+##   @ansi_(240) = Dark Gray
+## ============================================================================
+
+[theme]
+name = "cyberpunk"
+# No parent theme - building from scratch for full cyberpunk aesthetic
+
+[colors]
+## Alerts - using bright neon colors for visibility
+AlertInfo = "@ansi_(39)"      # Neon blue for info
+AlertWarn = "@ansi_(226)"     # Neon yellow for warnings
+AlertError = "@ansi_(196)"    # Bright red for errors
+
+## Text styles
+Annotation = "@ansi_(240)"    # Dark gray for less important text
+Base = "@ansi_(51)"           # Neon cyan as default text
+Guidance = "@ansi_(213)"      # Neon pink for help/guidance
+Important = "@ansi_(46)"      # Neon green to draw attention
+Title = "@ansi_(201)"         # Neon magenta for section titles
+Muted = "@ansi_(240)"         # Dark gray for contrast/backgrounds
