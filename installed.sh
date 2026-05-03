@@ -49,7 +49,6 @@ volta install pnpm
 sudo pacman -S go
 curl -fsSL https://bun.sh/install | bash
 sudo pacman -S go-task
-sudo pacman -S qemu-user-static-binfmt qemu-user-static
 yay -S kind
 sudo pacman -S jq yq
 yay -S github-copilot-cli
@@ -73,6 +72,7 @@ kubectl krew install oidc-login
 kubectl krew install radar
 
 ## Virtualization
+sudo pacman -S qemu-user-static-binfmt qemu-user-static
 sudo pacman -S qemu-full libvirt virt-manager edk2-ovmf dnsmasq
 sudo systemctl enable --now libvirtd
 
