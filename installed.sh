@@ -3,7 +3,6 @@ sudo pacman -S vim
 sudo pacman -S starship
 sudo pacman -S fzf
 sudo pacman -S atuin
-sudo yay -S blesh
 
 # UTIL
 sudo pacman -S htop
