@@ -14,14 +14,25 @@
         "hyprland/window"
     ],
     "modules-right": [
+        {{ if eq .chezmoi.hostname "blackpanther" }}
         "custom/voxtype",
+        {{ else if eq .chezmoi.hostname "nicolai-xps9320" }}
+        "mpd",
+        "idle_inhibitor",
+        {{ end }}
         "pulseaudio",
         "network",
+        {{ if eq .chezmoi.hostname "nicolai-xps9320" }}
+        "bluetooth",
+        {{ end }}
         "power-profiles-daemon",
         "cpu",
         "memory",
         "temperature",
         "backlight",
+        {{ if eq .chezmoi.hostname "nicolai-xps9320" }}
+        "keyboard-state",
+        {{ end }}
         "sway/language",
         "battery",
         "battery#bat2",
@@ -130,7 +141,7 @@
     "cpu": {
         "format": "{usage}% ",
         "tooltip": false,
-        "on-click": "kitty -T htop htop"
+        "on-click": "ghostty -T htop htop"
     },
     "memory": {
         "format": "{}% "
