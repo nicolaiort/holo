@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+# devsetup — Dev workspace launcher (Chrome + VS Code)
+#
+# Usage:
+#   devsetup        Restore last Chrome session (default)
+#   devsetup fresh  Open fresh dev layout on workspace 3 (HDMI-A-2)
+#
+# Window 1 — Work/Code:   knowledge.odit.services, github.com
+# Window 2 — Comms:       knowledge.odit.services, chat.odit.services,
+#                          insfx.slack.com, web.telegram.org/k,
+#                          web.whatsapp.com, 10.61.61.10:8123
+#
+# Tabs are pinned automatically by the Tab Auto-Pinner extension.
+# Load it once: chrome://extensions → Load unpacked →
+#   ~/.config/chrome-extensions/tab-autopinner
+
+TARGET_WORKSPACE=3
+CHROME_PREFS="$HOME/.config/google-chrome/Default/Preferences"
+
+WINDOW1_URLS=(
+  "https://knowledge.odit.services"
+  "https://github.com"
+)
+
+WINDOW2_URLS=(
+  "https://knowledge.odit.services"
+  "https://chat.odit.services"
+  "https://insfx.slack.com"
+  "https://web.telegram.org/k"
+  "https://web.whatsapp.com"
+  "http://10.61.61.10:8123"
+)
+
+# Set Chrome exit_type to Normal so --restore-last-session works without
+# the crash-recovery prompt. Safe to call even for the fresh-layout path.
+_fix_exit_type() {
+  python3 -c "
+import json, sys
+path = sys.argv[1]
+with open(path) as f:
+    p = json.load(f)
+p.setdefault('profile', {})['exit_type'] = 'Normal'
+with open(path, 'w') as f:
+    json.dump(p, f, separators=(',', ':'))
+" "$CHROME_PREFS"
+}
+
+_goto_workspace() {
+  hyprctl dispatch workspace "$TARGET_WORKSPACE"
+}
+
+_move_to_workspace() {
+  hyprctl dispatch movetoworkspace "$TARGET_WORKSPACE"
+}
+
+launch_vscode() {
+  code &
+  sleep 2
+  hyprctl dispatch movetoworkspacesilent 1
+}
+
+launch_fresh() {
+  _fix_exit_type
+  _goto_workspace
+  sleep 0.3
+
+  # Window 1 — Work/Code
+  google-chrome-stable --new-window "${WINDOW1_URLS[@]}" &
+  sleep 2
+  _move_to_workspace
+  sleep 0.3
+
+  # Window 2 — Comms
+  google-chrome-stable --new-window "${WINDOW2_URLS[@]}" &
+  sleep 2
+  _move_to_workspace
+
+  launch_vscode
+  _goto_workspace
+}
+
+launch_restore() {
+  _fix_exit_type
+  _goto_workspace
+  sleep 0.3
+
+  google-chrome-stable --restore-last-session &
+  sleep 3
+
+  # Move all Chrome windows that appear to workspace 3
+  # (hyprctl clients lists open windows; grep for chrome and move each)
+  hyprctl clients -j | python3 -c "
+import json, sys, subprocess
+clients = json.load(sys.stdin)
+for c in clients:
+    if 'chrome' in c.get('class', '').lower():
+        addr = c['address']
+        subprocess.run(['hyprctl', 'dispatch', 'movetoworkspacesilent',
+                        '3,address:' + addr])
+"
+  launch_vscode
+  _goto_workspace
+}
+
+case "${1:-}" in
+  fresh)
+    launch_fresh
+    ;;
+  *)
+    launch_restore
+    ;;
+esac
