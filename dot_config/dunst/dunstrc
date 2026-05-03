@@ -1,0 +1,128 @@
+# See dunst(5) for all configuration options
+
+[global]
+    ### Display ###
+
+    # Pin notifications to DP-1 (main monitor)
+    monitor = DP-1
+    follow = none
+
+    ### Geometry ###
+
+    width = (300, 500)
+    height = (0, 200)
+    origin = top-right
+    #offset = (10, 10)
+    offset = (0, 0)
+    scale = 0
+    notification_limit = 5
+
+    ### Progress bar ###
+
+    progress_bar = true
+    progress_bar_height = 8
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 150
+    progress_bar_max_width = 460
+    progress_bar_corner_radius = 4
+    progress_bar_corners = all
+
+    ### Icon ###
+
+    icon_corner_radius = 6
+    icon_corners = all
+
+    ### Appearance ###
+
+    transparency = 10
+    separator_height = 1
+    padding = 14
+    horizontal_padding = 16
+    text_icon_padding = 12
+    frame_width = 2
+    frame_color = "#c084fc"   # soft purple accent
+    separator_color = "#3b3b5c"
+    gap_size = 8
+    corner_radius = 12
+    corners = all
+
+    indicate_hidden = yes
+    sort = urgency_descending
+
+    ### Text ###
+
+    font = Sans 11
+    line_height = 2
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = end
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = no
+
+    ### Icons ###
+
+    enable_recursive_icon_lookup = true
+    icon_theme = "Qogir-Dark, AdwaitaLegacy, hicolor"
+    icon_position = left
+    min_icon_size = 40
+    max_icon_size = 64
+
+    ### History ###
+
+    sticky_history = yes
+    history_length = 20
+
+    ### Misc ###
+
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/xdg-open
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    ignore_dbusclose = false
+    force_xwayland = false
+    force_xinerama = false
+
+    ### Mouse ###
+
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+    pause_on_mouse_over = false
+
+# Low urgency — muted lavender
+[urgency_low]
+    background = "#1a1a2e"
+    foreground = "#a9a9c8"
+    frame_color = "#6b6b9a"
+    highlight = "#c084fc"
+    timeout = 6
+    default_icon = dialog-information
+
+# Normal urgency — deep navy with purple glow
+[urgency_normal]
+    background = "#1e1e3a"
+    foreground = "#e2e2f0"
+    frame_color = "#c084fc"
+    highlight = "#f472b6"
+    timeout = 8
+    override_pause_level = 30
+    default_icon = dialog-information
+
+# Critical urgency — vibrant pink/magenta
+[urgency_critical]
+    background = "#2a0a2e"
+    foreground = "#ffffff"
+    frame_color = "#f472b6"
+    highlight = "#f472b6"
+    timeout = 0
+    override_pause_level = 60
+    default_icon = dialog-warning
