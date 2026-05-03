@@ -319,6 +319,9 @@ windowrule = match:title ^(Rename ".*")$, float on
 
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec-once = thunar --daemon
-exec-once = voxtype daemon
-exec-once = solaar -w hide
 exec-once = dunst
+
+{{ if eq .chezmoi.hostname "blackpanther" }}
+exec-once = solaar -w hide
+exec-once = voxtype daemon
+{{ end }}
