@@ -23,7 +23,7 @@
 [theme]
 name = "cyberpunk"
 # No parent theme - building from scratch for full cyberpunk aesthetic
-dot_config/private_atuin/themes
+
 [colors]
 ## Alerts - using bright neon colors for visibility
 AlertInfo = "@ansi_(39)"      # Neon blue for info
