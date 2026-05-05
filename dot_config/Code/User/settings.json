@@ -1,0 +1,10 @@
+{
+    "editor.fontFamily": "'FiraCode Nerd Font','Noto Color Emoji','Droid Sans Mono', monospace",
+    "git.confirmSync": false,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "git.autofetch": true,
+    "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    },
+    "git.enableSmartCommit": true
+}
