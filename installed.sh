@@ -76,6 +76,7 @@ sudo pacman -S qemu-full libvirt virt-manager edk2-ovmf dnsmasq
 sudo systemctl enable --now libvirtd
 
 # General
+sudo pacman -S libva-nvidia-driver libva-utils
 sudo pacman -S thunderbird
 sudo pacman -S thunar thunar-media-tags-plugin thunar-archive-plugin thunar-volman gvfs gvfs-smb gvfs-mtp gvfs-afc udisks2 polkit polkit-gnome
 sudo pacman -S signal-desktop
@@ -85,6 +86,7 @@ sudo systemctl enable --now avahi-daemon
 sudo lpadmin -p Brother-MFC-L8690CDW -E -v socket://10.1.1.91:9100 -m Brother/brother_mfcl8690cdw_printer_en.ppd
 sudo lpoptions -d Brother-MFC-L8690CDW
 sudo lpadmin -p Brother-MFC-L8690CDW -o PageSize=A4
+yay -S jellyfin-desktop-git
 
 # Dictation
 sudo pacman -S wtype wl-clipboard
