@@ -66,6 +66,8 @@ bind = , mouse:275, exec, wtype -M ctrl w -m ctrl  # Forward button: open tab
 ##! Dictation
 bind = , F24, exec, voxtype record start
 bindr = , F24, exec, voxtype record stop
+bind = , Pause, exec, voxtype record start
+bindr = , Pause, exec, voxtype record stop
 
 # F23: push-to-talk → opencode (hold to speak, release to send prompt)
 bind = , F23, exec, voxtype record start --profile opencode --no-auto-submit
