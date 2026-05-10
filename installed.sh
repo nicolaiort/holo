@@ -87,6 +87,7 @@ sudo lpadmin -p Brother-MFC-L8690CDW -E -v socket://10.1.1.91:9100 -m Brother/br
 sudo lpoptions -d Brother-MFC-L8690CDW
 sudo lpadmin -p Brother-MFC-L8690CDW -o PageSize=A4
 yay -S jellyfin-desktop-git
+yay -S slack-desktop
 
 # Dictation
 sudo pacman -S wtype wl-clipboard
