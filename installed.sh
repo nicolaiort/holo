@@ -16,6 +16,9 @@ sudo pacman -S wireguard-tools
 yay -S netbird
 sudo pacman -S chezmoi
 
+## AV
+sudo pacman -S yt-dlp
+
 # DE
 sudo pacman -S hyprland
 sudo pacman -S waybar rofi rofi-calc rofimoji
