@@ -32,13 +32,24 @@ alias docker='podman'
 
 # General dev
 alias release="shikai"
+function copilotgo(){
+    local model key
+    key=$(jq -r '.["opencode-go"].key // empty' ~/.local/share/opencode/auth.json 2>/dev/null)
+    [[ -z "$key" ]] && echo "error: no opencode-go key found in auth.json" && return 1
+    model=$(curl -sf https://opencode.ai/zen/go/v1/models \
+        -H "Authorization: Bearer $key" | \
+        jq -r '.data[] | .id' 2>/dev/null | \
+        fzf --prompt="Select Go model > " --height=12 --header="OpenCode Go Models" --reverse)
+    [[ -z "$model" ]] && echo "cancelled" && return 1
+    COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/go/v1 COPILOT_PROVIDER_API_KEY="$key" COPILOT_MODEL="$model" copilot
+}
 function copilotfree(){
     local model
     model=$(curl -sf https://opencode.ai/zen/v1/models | \
         jq -r '.data[] | select(.id | endswith("-free")) | .id' 2>/dev/null | \
         fzf --prompt="Select free model > " --height=10 --header="OpenCode SEN Free Models" --reverse)
     [[ -z "$model" ]] && echo "cancelled" && return 1
-    COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='' COPILOT_MODEL="$model" copilot
+    COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_MODEL="$model" copilot
 }
 
 # Kubernetes
