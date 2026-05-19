@@ -33,6 +33,7 @@ alias docker='podman'
 # General dev
 alias release="shikai"
 alias copilotfree="COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='' COPILOT_MODEL=minimax-m2.5-free copilot"
+alias copilotflash="COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='sk-APxHRAqzVvl54JZiBhHLiKkeBkKFgpreBrNrGlwacaOtqgoD7qz1gU41mmInSawP' COPILOT_MODEL=deepseek-v4-flash-free copilot"
 
 # Kubernetes
 ## General
