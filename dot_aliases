@@ -32,8 +32,14 @@ alias docker='podman'
 
 # General dev
 alias release="shikai"
-alias copilotfree="COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='' COPILOT_MODEL=minimax-m2.5-free copilot"
-alias copilotflash="COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='sk-APxHRAqzVvl54JZiBhHLiKkeBkKFgpreBrNrGlwacaOtqgoD7qz1gU41mmInSawP' COPILOT_MODEL=deepseek-v4-flash-free copilot"
+function copilotfree(){
+    local model
+    model=$(curl -sf https://opencode.ai/zen/v1/models | \
+        jq -r '.data[] | select(.id | endswith("-free")) | .id' 2>/dev/null | \
+        fzf --prompt="Select free model > " --height=10 --header="OpenCode SEN Free Models" --reverse)
+    [[ -z "$model" ]] && echo "cancelled" && return 1
+    COPILOT_PROVIDER_TYPE=openai COPILOT_PROVIDER_BASE_URL=https://opencode.ai/zen/v1 COPILOT_PROVIDER_API_KEY='' COPILOT_MODEL="$model" copilot
+}
 
 # Kubernetes
 ## General
