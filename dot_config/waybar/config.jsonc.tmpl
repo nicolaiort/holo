@@ -16,6 +16,7 @@
     "modules-right": [
         {{ if eq .chezmoi.hostname "blackpanther" }}
         "custom/voxtype",
+        "custom/codexbar",
         {{ else if eq .chezmoi.hostname "nicolai-xps9320" }}
         "mpd",
         "idle_inhibitor",
@@ -282,5 +283,11 @@
        "format": "{}",
        "tooltip": true,
        "on-click": "systemctl --user restart voxtype"
-   }
+   },
+   "custom/codexbar": {
+    "exec": "bash ~/.config/waybar/codexbar-copilot.sh",
+    "return-type": "json",
+    "interval": 60,
+    "tooltip": true
+  }
 }
