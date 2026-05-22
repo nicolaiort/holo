@@ -61,6 +61,9 @@ sudo pacman -S gitleaks
 yay -S github-copilot-cli
 yay -S codexbar-cli codexbar-tui 
 
+codexbar config enable --provider copilot
+printf '%s' "$COPILOT_API_TOKEN" | codexbar config set-api-key --provider copilot --stdin
+
 ## Krew
 (
   set -x; cd "$(mktemp -d)" &&
