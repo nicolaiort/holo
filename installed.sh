@@ -59,7 +59,7 @@ sudo pacman -S gitleaks
 
 ## AI
 yay -S github-copilot-cli
-yay -S codexbar-cli codexbar-tui 
+yay -S codexbar-cli
 
 codexbar config enable --provider copilot
 printf '%s' "$COPILOT_API_TOKEN" | codexbar config set-api-key --provider copilot --stdin
