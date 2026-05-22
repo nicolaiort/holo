@@ -53,11 +53,13 @@ curl -fsSL https://bun.sh/install | bash
 sudo pacman -S go-task
 yay -S kind
 sudo pacman -S jq yq
-yay -S github-copilot-cli
-sudo pacman -S gitleaks
-
 sudo pacman -S pandoc
 yay -S python-weasyprint
+sudo pacman -S gitleaks
+
+## AI
+yay -S github-copilot-cli
+yay -S codexbar-cli codexbar-tui 
 
 ## Krew
 (
