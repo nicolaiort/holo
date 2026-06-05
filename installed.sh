@@ -37,6 +37,9 @@ sudo pacman -S dunst
 ## Webcam
 sudo pacman -S cameractrls
 
+## extra tools
+sudo pacman -S kdeconnect
+
 # DEV
 sudo pacman -S kubectl k9s kubeseal
 
@@ -86,7 +89,7 @@ sudo systemctl enable --now libvirtd
 # General
 sudo pacman -S libva-nvidia-driver libva-utils
 sudo pacman -S thunderbird
-sudo pacman -S thunar thunar-media-tags-plugin thunar-archive-plugin thunar-volman gvfs gvfs-smb gvfs-mtp gvfs-afc udisks2 polkit polkit-gnome
+sudo pacman -S thunar thunar-media-tags-plugin thunar-archive-plugin thunar-volman gvfs gvfs-smb gvfs-mtp gvfs-afc udisks2 polkit polkit-gnome ark
 sudo pacman -S signal-desktop
 yay -S brother-mfc-l8690cdw cups avahi nss-mdns ghostscript
 sudo systemctl enable --now cups
@@ -106,3 +109,6 @@ sudo voxtype setup gpu --enable
 sudo voxtype setup onnx --enable
 voxtype setup model #Choose parkeet 11
 voxtype setup waybar
+
+# Gaming
+sudo pacman -S flatpak
