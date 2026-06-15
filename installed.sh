@@ -42,6 +42,7 @@ sudo pacman -S kdeconnect
 
 # DEV
 sudo pacman -S kubectl k9s kubeseal
+yay -S oras skopeo
 
 sudo pacman -S podman
 yay -S visual-studio-code-bin
@@ -107,6 +108,7 @@ yay -S voxtype
 voxtype setup systemd
 sudo voxtype setup gpu --enable
 sudo voxtype setup onnx --enable
+sudo ln -sf /usr/lib/voxtype/voxtype-onnx /usr/bin/voxtype
 voxtype setup model #Choose parkeet 11
 voxtype setup waybar
 
