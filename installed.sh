@@ -60,6 +60,7 @@ sudo pacman -S jq yq
 sudo pacman -S pandoc
 yay -S python-weasyprint
 sudo pacman -S gitleaks
+yay -S uv
 
 ## AI
 yay -S github-copilot-cli
