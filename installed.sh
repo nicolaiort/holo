@@ -15,6 +15,7 @@ sudo pacman -S traceroute
 sudo pacman -S wireguard-tools
 yay -S netbird
 sudo pacman -S chezmoi
+yay -S balena-etcher
 
 ## AV
 sudo pacman -S yt-dlp
@@ -61,6 +62,8 @@ sudo pacman -S pandoc
 yay -S python-weasyprint
 sudo pacman -S gitleaks
 yay -S uv
+yay -S cloudflared
+yay -S actionlint
 
 ## AI
 yay -S github-copilot-cli
