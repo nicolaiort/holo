@@ -45,7 +45,7 @@ sudo pacman -S kdeconnect
 sudo pacman -S kubectl k9s kubeseal
 yay -S oras skopeo
 
-sudo pacman -S podman
+sudo pacman -S podman podman-compose
 yay -S visual-studio-code-bin
 yay -S flux-bin
 go install github.com/gohugoio/hugo@v0.145.0
