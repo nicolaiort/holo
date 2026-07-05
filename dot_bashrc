@@ -34,3 +34,10 @@ source ~/.local/bin/pkgwhich.sh
 eval "$(atuin init bash --disable-up-arrow)"
 ssh() { TERM=xterm-256color command ssh "$@"; }
 export REGISTRY_AUTH_FILE="$HOME/.podman/auth.json"
+
+{{ if eq .chezmoi.hostname "aioli" }}
+export CUDA_HOME=/home/niggl/odysseus/venv/lib/python3.14/site-packages/nvidia/cu13
+export PATH="$CUDA_HOME/bin:$PATH"
+export LD_LIBRARY_PATH="$CUDA_HOME/lib:$LD_LIBRARY_PATH"
+export VLLM_USE_FLASHINFER_SAMPLER=0
+{{ end }}
