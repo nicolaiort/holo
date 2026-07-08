@@ -64,6 +64,7 @@ sudo pacman -S gitleaks
 yay -S uv
 yay -S cloudflared
 yay -S actionlint
+yay -S github-cli tea
 
 ## AI
 yay -S github-copilot-cli
