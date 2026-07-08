@@ -18,7 +18,7 @@
       "npm": "@ai-sdk/openai-compatible",
       "name": "vLLM (local)",
       "options": {
-        "baseURL": "http://10.11.9.12:8000/v1"
+        "baseURL": "https://aioli.nig.gl/v1"
       },
       "models": {
         "Qwen/Qwen3.6-35B-A3B-FP8": {
