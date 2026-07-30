@@ -4,6 +4,9 @@ sudo pacman -S starship
 sudo pacman -S fzf
 sudo pacman -S atuin
 
+# PERMISSIONS
+sudo usermod -aG uucp niggl
+
 # UTIL
 sudo pacman -S htop
 sudo yay -S linutil
