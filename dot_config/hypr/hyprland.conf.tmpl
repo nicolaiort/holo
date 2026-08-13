@@ -25,20 +25,19 @@
 {{- if eq .chezmoi.hostname "blackpanther" }}
 
 # Left portrait (ASUS) — logical 1440x2560, vertically centered in 2880px total height
-monitor=HDMI-A-2,2560x1440@60,0x620,1,transform,3
-# Top monitor (Philips) — logical 2560x1440, positioned above DP-1
+monitor=HDMI-A-1,2560x1440@60,0x620,1,transform,3
+# Top monitor (Philips) — logical 2560x1440, positioned above DP-3
 monitor=DP-2,2560x1440@60,1440x0,1
 # Bottom center (BenQ 4K) — logical 2560x1440 (scale 1.5), directly below DP-2
-monitor=DP-1,3840x2160@60,1440x1440,1.5
-# Right portrait (Acer) — logical 1080x1920, vertically centered in 2880px total height
-#monitor=HDMI-A-1,1920x1080@60,4000x1200,1,transform,3
-monitor=HDMI-A-1,3840x1600@60,4000x-480,1,transform,1
+monitor=DP-3,3840x2160@60,1440x1440,1.5
+# Right portrait (LG Ultrawide) — logical 1080x1920, vertically centered in 2880px total height
+monitor=DP-1,3840x1600@60,4000x-480,1,transform,1
 
-workspace=1,monitor:DP-1
+workspace=1,monitor:DP-3
 workspace=2,monitor:DP-2
-workspace=3,monitor:HDMI-A-2
-workspace=4,monitor:HDMI-A-1
-workspace=5,monitor:DP-1
+workspace=3,monitor:HDMI-A-1
+workspace=4,monitor:DP-1
+workspace=5,monitor:DP-3
 
 {{- else if eq .chezmoi.hostname "nicolai-xps9320" }}
 
