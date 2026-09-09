@@ -1,0 +1,12 @@
+{
+  "plugin": [
+    [
+      "@ishaksebsib/opencode-tree",
+      {
+        "storageScope": "global"
+      }
+    ],
+    "@prevalentware/opencode-goal-plugin",
+    "@slkiser/opencode-quota@latest"
+  ]
+}
