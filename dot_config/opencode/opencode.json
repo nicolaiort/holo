@@ -16,5 +16,10 @@
       "enabled": true
     }
   },
-  "provider": {}
+  "provider": {
+    "copilot": {},
+    "openai": {},
+    "openrouter": {},
+    "opencode-go": {}
+  }
 }
