@@ -46,3 +46,5 @@ hl.bind("F23", hl.dsp.exec_cmd("voxtype record stop"), { release = true })
 hl.bind("Print", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png | dunstify \"Screenshot of the region taken\" -t 1000"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grim - | wl-copy && wl-paste > ~/Pictures/screenshots/Screenshot-$(date +%F_%T).png | dunstify \"Screenshot of whole screen taken\" -t 1000"))
 hl.bind("SUPER + SHIFT + T", hl.dsp.exec_cmd("bash ~/.local/bin/devsetup restore"))
+
+hl.bind("CTRL + SHIFT + 2", hl.dsp.global("com.t3tools.T3Code:capture-window"))
