@@ -31,3 +31,13 @@ chezmoi update #runs git pull and apply
 {{ else if eq .chezmoi.hostname "nicolai-xps9320" }}
 {{ end }}
 ```
+
+### Host-spezifische Pakete (yay)
+
+`packages/yay.txt` gilt für alle Hosts. Existiert zusätzlich
+`packages/yay.<hostname>.txt` (z. B. `packages/yay.blackpanther.txt`),
+wird sie mit installiert — z. B. für den Nvidia-Treiber
+(`nvidia-open-dkms`, `libva-nvidia-driver`, `onnxruntime-cuda`), der nicht auf
+jedes System gehört. Hosts ohne eigene Datei bekommen nur die Basis.
+Das Skript `run_onchange_before_10-install-yay.sh.tmpl` läuft bei Änderung
+einer der beiden Dateien automatisch (`run_onchange_before`).

@@ -1,0 +1,11 @@
+# Host-spezifische yay-Pakete für aioli.
+# Wird zusätzlich zu packages/yay.txt installiert (gleiche Syntax:
+# Zeilen mit # und Leerzeilen ignoriert das Install-Skript).
+# Nvidia-GPU (vgl. CUDA_HOME in dot_bashrc.tmpl): Treiber + CUDA-Variante.
+
+# --- NVIDIA ---
+libva-nvidia-driver
+nvidia-open-dkms
+
+# --- DICTATION (CUDA) ---
+onnxruntime-cuda

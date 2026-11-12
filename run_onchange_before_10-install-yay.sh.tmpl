@@ -1,19 +1,29 @@
 #!/bin/bash
 # yay baseline hash: {{ include "packages/yay.txt" | sha256sum }}
+# yay host hash ({{ .chezmoi.hostname }}): {{ $hostFile := print "packages/yay." .chezmoi.hostname ".txt" }}{{ if stat (joinPath .chezmoi.sourceDir $hostFile) }}{{ include $hostFile | sha256sum }}{{ else }}no-host-file{{ end }}
 # Deklarative yay-Pakete via chezmoi (run_onchange_before).
-# Läuft automatisch bei `chezmoi apply`, sobald sich packages/yay.txt ändert.
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/yay.txt
+# oder packages/yay.<hostname>.txt ändert.
+# Basis: packages/yay.txt (alle Hosts) + optional packages/yay.<hostname>.txt (dieser Host).
 set -eu
 
-PKG_FILE="{{ .chezmoi.sourceDir }}/packages/yay.txt"
+BASE_FILE="{{ .chezmoi.sourceDir }}/packages/yay.txt"
+HOST_FILE="{{ .chezmoi.sourceDir }}/packages/yay.{{ .chezmoi.hostname }}.txt"
 
-if [ ! -f "$PKG_FILE" ]; then
-  echo "yay baseline: $PKG_FILE nicht gefunden, skip."
+if [ ! -f "$BASE_FILE" ]; then
+  echo "yay baseline: $BASE_FILE nicht gefunden, skip."
   exit 0
 fi
 
-mapfile -t PKGS < <(grep -vE '^\s*(#|$)' "$PKG_FILE" || true)
+FILES=("$BASE_FILE")
+if [ -f "$HOST_FILE" ]; then
+  FILES+=("$HOST_FILE")
+  echo "yay baseline: nutze zusätzlich $HOST_FILE."
+fi
+
+mapfile -t PKGS < <(cat "${FILES[@]}" | grep -vE '^\s*(#|$)' | awk 'NF && !seen[$0]++' || true)
 if [ "${#PKGS[@]}" -eq 0 ]; then
-  echo "yay baseline: keine Pakete in $PKG_FILE."
+  echo "yay baseline: keine Pakete in ${FILES[*]}."
   exit 0
 fi
 

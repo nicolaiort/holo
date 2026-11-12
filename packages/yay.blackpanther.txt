@@ -1,0 +1,11 @@
+# Host-spezifische yay-Pakete für blackpanther.
+# Wird zusätzlich zu packages/yay.txt installiert (gleiche Syntax:
+# Zeilen mit # und Leerzeilen ignoriert das Install-Skript).
+# Nvidia-GPU: Treiber + CUDA-Variante. Hosts ohne Nvidia-GPU brauchen keine eigene Datei.
+
+# --- NVIDIA ---
+libva-nvidia-driver
+nvidia-open-dkms
+
+# --- DICTATION (CUDA) ---
+onnxruntime-cuda

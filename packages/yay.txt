@@ -4,6 +4,9 @@
 # PLUS als explizit gewollt aus installed.sh. Bootloader/Kernel/Firmware/Fonts/Audio stellt der Installer.
 # Gruppiert wie installed.sh. `git` ist bewusste Ausnahme (braucht chezmoi update).
 # Zeilen mit # und Leerzeilen ignoriert das Install-Skript.
+#
+# Host-spezifisch: packages/yay.<hostname>.txt (optional, gleiche Syntax)
+# wird zusätzlich installiert, z.B. Nvidia-Treiber nur auf GPU-Hosts.
 
 # --- CLI ---
 atuin
@@ -125,7 +128,6 @@ gvfs
 gvfs-afc
 gvfs-mtp
 gvfs-smb
-libva-nvidia-driver
 libva-utils
 nss-mdns
 polkit
@@ -155,7 +157,6 @@ v4l2loopback-dkms
 v4l2loopback-utils
 vlc
 ydotool
-nvidia-open-dkms
 oidc-agent
 open-iscsi
 evtest
@@ -171,7 +172,6 @@ picard
 python-pyxdg
 
 # --- DICTATION ---
-onnxruntime-cuda
 voxtype
 wtype
 
