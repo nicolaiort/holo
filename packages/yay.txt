@@ -5,6 +5,9 @@
 # Abschnitte nach Verwendungszweck (angelehnt an installed.sh), innen alphabetisch.
 # `git` ist bewusste Ausnahme (braucht chezmoi update).
 # Zeilen mit # und Leerzeilen ignoriert das Install-Skript.
+#
+# Host-spezifisch: packages/yay.<hostname>.txt (optional, gleiche Syntax)
+# wird zusätzlich installiert, z.B. Nvidia-Treiber nur auf GPU-Hosts.
 
 # --- CLI ---
 atuin
@@ -149,10 +152,8 @@ cups
 evtest
 ghostscript
 keyd
-libva-nvidia-driver
 libva-utils
 nss-mdns
-nvidia-open-dkms
 open-iscsi
 v4l2loopback-dkms
 v4l2loopback-utils
@@ -183,6 +184,5 @@ python-vdf
 umu-launcher
 
 # --- DICTATION ---
-onnxruntime-cuda
 voxtype
 wtype
