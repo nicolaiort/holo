@@ -12,6 +12,8 @@ HISTCONTROL=ignoredups:erasedups
 HISTIGNORE="ls:ll:cd:pwd:exit"
 shopt -s histappend
 
+source ~/.env.sh
+
 source <(fzf --bash)
 export EDITOR=vim
 
