@@ -32,16 +32,14 @@ if ! command -v yay >/dev/null 2>&1; then
   sudo pacman -S --needed --noconfirm yay
 fi
 
-echo "yay baseline: prüfe ${#PKGS[@]} Pakete..."
+TOTAL=${#PKGS[@]}
 MISSING=()
 for p in "${PKGS[@]}"; do
   pacman -Q "$p" >/dev/null 2>&1 || MISSING+=("$p")
 done
+echo "yay baseline: $((TOTAL - ${#MISSING[@]}))/$TOTAL up to date"
 
-if [ "${#MISSING[@]}" -eq 0 ]; then
-  echo "yay baseline: alle Pakete installiert, nichts zu tun."
-  exit 0
+if [ "${#MISSING[@]}" -gt 0 ]; then
+  echo "yay baseline: installiere ${#MISSING[@]}: ${MISSING[*]}"
+  yay -S --needed --noconfirm "${MISSING[@]}"
 fi
-
-echo "yay baseline: installiere ${#MISSING[@]} fehlende Pakete: ${MISSING[*]}"
-yay -S --needed --noconfirm "${MISSING[@]}"

@@ -20,11 +20,13 @@ if [ "${#TOOLS[@]}" -eq 0 ]; then
 fi
 
 HAVE="$(volta list 2>/dev/null || true)"
+MISSING=()
 for t in "${TOOLS[@]}"; do
-  if echo "$HAVE" | grep -qwF "$t"; then
-    echo "volta baseline: $t ok."
-  else
-    echo "volta baseline: installiere $t..."
-    volta install "$t"
-  fi
+  echo "$HAVE" | grep -qwF "$t" || MISSING+=("$t")
 done
+echo "volta baseline: $((${#TOOLS[@]} - ${#MISSING[@]}))/${#TOOLS[@]} up to date"
+
+if [ "${#MISSING[@]}" -gt 0 ]; then
+  echo "volta baseline: installiere ${#MISSING[@]}: ${MISSING[*]}"
+  volta install "${MISSING[@]}"
+fi

@@ -20,23 +20,27 @@ if [ "${#SPECS[@]}" -eq 0 ]; then
   exit 0
 fi
 
+TOTAL=${#SPECS[@]}
+OK=0
+TO_INSTALL=()
 for spec in "${SPECS[@]}"; do
   pkg="${spec%@*}"
   want="${spec##*@}"
   bin="$(basename "$pkg")"
   if [ -x "$GOBIN/$bin" ]; then
     have="$(go version -m "$GOBIN/$bin" 2>/dev/null | awk -v p="$pkg" '$1=="mod" && (p==$2 || index(p, $2"/")==1) {print $3; exit}')"
-    if [ "$have" = "$want" ]; then
-      echo "gotools baseline: $bin $want ok."
-      continue
-    elif [ -n "$have" ]; then
-      echo "gotools baseline: $bin $have -> $want, aktualisiere..."
-    else
-      echo "gotools baseline: $bin vorhanden (Version unbekannt), lasse es stehen."
+    if [ -z "$have" ] || [ "$have" = "$want" ]; then
+      OK=$((OK + 1))
       continue
     fi
-  else
-    echo "gotools baseline: $bin fehlt, installiere $want..."
   fi
-  GOBIN="$GOBIN" go install "$spec"
+  TO_INSTALL+=("$spec")
 done
+echo "gotools baseline: $OK/$TOTAL up to date"
+
+if [ "${#TO_INSTALL[@]}" -gt 0 ]; then
+  echo "gotools baseline: installiere/aktualisiere ${#TO_INSTALL[@]}: ${TO_INSTALL[*]}"
+  for spec in "${TO_INSTALL[@]}"; do
+    GOBIN="$GOBIN" go install "$spec"
+  done
+fi

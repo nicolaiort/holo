@@ -15,7 +15,7 @@ if [ -z "$WANT" ]; then
 fi
 
 if command -v bun >/dev/null 2>&1 && [ "$(bun --version)" = "$WANT" ]; then
-  echo "bun baseline: $WANT ok."
+  echo "bun baseline: $WANT up to date."
   exit 0
 fi
 

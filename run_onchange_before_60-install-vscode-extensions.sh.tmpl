@@ -18,11 +18,15 @@ if [ "${#EXTS[@]}" -eq 0 ]; then
 fi
 
 INSTALLED="$(code --list-extensions 2>/dev/null || true)"
+MISSING=()
 for e in "${EXTS[@]}"; do
-  if echo "$INSTALLED" | grep -qxF "$e"; then
-    echo "vscode baseline: $e ok."
-  else
-    echo "vscode baseline: installiere $e..."
-    code --install-extension "$e"
-  fi
+  echo "$INSTALLED" | grep -qxF "$e" || MISSING+=("$e")
 done
+echo "vscode baseline: $((${#EXTS[@]} - ${#MISSING[@]}))/${#EXTS[@]} up to date"
+
+if [ "${#MISSING[@]}" -gt 0 ]; then
+  echo "vscode baseline: installiere ${#MISSING[@]}: ${MISSING[*]}"
+  for e in "${MISSING[@]}"; do
+    code --install-extension "$e"
+  done
+fi

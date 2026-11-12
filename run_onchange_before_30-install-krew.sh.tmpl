@@ -34,11 +34,13 @@ if [ "${#PKGS[@]}" -eq 0 ]; then
 fi
 
 INSTALLED="$(kubectl krew list 2>/dev/null || true)"
+MISSING=()
 for p in "${PKGS[@]}"; do
-  if echo "$INSTALLED" | grep -qx "$p"; then
-    echo "krew baseline: $p ok."
-  else
-    echo "krew baseline: installiere $p..."
-    kubectl krew install "$p"
-  fi
+  echo "$INSTALLED" | grep -qx "$p" || MISSING+=("$p")
 done
+echo "krew baseline: $((${#PKGS[@]} - ${#MISSING[@]}))/${#PKGS[@]} up to date"
+
+if [ "${#MISSING[@]}" -gt 0 ]; then
+  echo "krew baseline: installiere ${#MISSING[@]}: ${MISSING[*]}"
+  kubectl krew install "${MISSING[@]}"
+fi

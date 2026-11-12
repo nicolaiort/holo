@@ -24,5 +24,14 @@ fi
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-echo "flatpak baseline: installiere ${#PKGS[@]} Apps (system)..."
-flatpak install --system --assumeyes flathub "${PKGS[@]}"
+INSTALLED="$(flatpak list --app --columns=application 2>/dev/null || true)"
+MISSING=()
+for a in "${PKGS[@]}"; do
+  echo "$INSTALLED" | grep -qxF "$a" || MISSING+=("$a")
+done
+echo "flatpak baseline: $((${#PKGS[@]} - ${#MISSING[@]}))/${#PKGS[@]} up to date"
+
+if [ "${#MISSING[@]}" -gt 0 ]; then
+  echo "flatpak baseline: installiere ${#MISSING[@]}: ${MISSING[*]}"
+  flatpak install --system --assumeyes flathub "${MISSING[@]}"
+fi
