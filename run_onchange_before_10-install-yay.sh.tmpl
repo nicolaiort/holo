@@ -1,0 +1,26 @@
+#!/bin/bash
+# yay baseline hash: {{ include "packages/yay.txt" | sha256sum }}
+# Deklarative yay-Pakete via chezmoi (run_onchange_before).
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/yay.txt ändert.
+set -eu
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/packages/yay.txt"
+
+if [ ! -f "$PKG_FILE" ]; then
+  echo "yay baseline: $PKG_FILE nicht gefunden, skip."
+  exit 0
+fi
+
+mapfile -t PKGS < <(grep -vE '^\s*(#|$)' "$PKG_FILE" || true)
+if [ "${#PKGS[@]}" -eq 0 ]; then
+  echo "yay baseline: keine Pakete in $PKG_FILE."
+  exit 0
+fi
+
+if ! command -v yay >/dev/null 2>&1; then
+  echo "yay nicht gefunden, installiere via pacman..."
+  sudo pacman -S --needed --noconfirm yay
+fi
+
+echo "yay baseline: installiere ${#PKGS[@]} Pakete..."
+yay -S --needed --noconfirm "${PKGS[@]}"

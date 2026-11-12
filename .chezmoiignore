@@ -1,0 +1,3 @@
+# Dateien/Verzeichnisse, die chezmoi nicht nach $HOME deployen soll.
+# (Skripte run_* und Templates werden davon nicht berührt.)
+packages/

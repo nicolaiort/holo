@@ -1,0 +1,28 @@
+#!/bin/bash
+# flatpak baseline hash: {{ include "packages/flatpak.txt" | sha256sum }}
+# Deklarative flatpak-Pakete via chezmoi (run_onchange_before).
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/flatpak.txt ändert.
+set -eu
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/packages/flatpak.txt"
+
+if ! command -v flatpak >/dev/null 2>&1; then
+  echo "flatpak nicht gefunden, installiere via yay..."
+  yay -S --needed --noconfirm flatpak
+fi
+
+if [ ! -f "$PKG_FILE" ]; then
+  echo "flatpak baseline: $PKG_FILE nicht gefunden, skip."
+  exit 0
+fi
+
+mapfile -t PKGS < <(grep -vE '^\s*(#|$)' "$PKG_FILE" || true)
+if [ "${#PKGS[@]}" -eq 0 ]; then
+  echo "flatpak baseline: keine Apps in $PKG_FILE."
+  exit 0
+fi
+
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+echo "flatpak baseline: installiere ${#PKGS[@]} Apps (system)..."
+flatpak install --system --assumeyes flathub "${PKGS[@]}"

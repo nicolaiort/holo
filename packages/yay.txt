@@ -1,0 +1,181 @@
+# yay baseline - deklarativ via chezmoi verwaltet
+# Kuratiert 2026-11-12 auf blackpanther: nur explizit installierte Pakete.
+# Regel: pacman -Qeq MINUS Calamares-Installer-Fenster (pacman.log 2026-03-11 bis inkl. grub-Transaktion)
+# PLUS als explizit gewollt aus installed.sh. Bootloader/Kernel/Firmware/Fonts/Audio stellt der Installer.
+# Gruppiert wie installed.sh. `git` ist bewusste Ausnahme (braucht chezmoi update).
+# Zeilen mit # und Leerzeilen ignoriert das Install-Skript.
+
+# --- CLI ---
+atuin
+fzf
+starship
+vim
+
+# --- UTIL ---
+balena-etcher
+chezmoi
+htop
+neofetch
+openbsd-netcat
+rustscan
+traceroute
+wireguard-tools
+
+# --- AV ---
+yt-dlp
+
+# --- DE ---
+cage
+cliphist
+dunst
+ghostty
+greetd
+greetd-regreet
+grim
+hyprland
+hyprpaper
+hyprpicker
+rofi
+rofi-calc
+rofimoji
+slurp
+solaar
+ttf-firacode-nerd
+waybar
+wl-clipboard
+wlr-randr
+xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
+
+# --- WEBCAM ---
+cameractrls
+
+# --- EXTRA-TOOLS ---
+kdeconnect
+
+# --- DEV ---
+actionlint
+cloudflared
+flux-bin
+git
+git-crypt
+github-cli
+gitleaks
+go
+go-task
+jq
+k9s
+kind
+kubectl
+kubeseal
+oras
+pandoc-cli
+podman
+podman-compose
+python-weasyprint
+tea
+uv
+visual-studio-code-bin
+yq
+
+# --- AI ---
+codexbar-cli
+github-copilot-cli
+
+# --- VIRTUALISIERUNG ---
+dnsmasq
+edk2-ovmf
+libvirt
+qemu-full
+qemu-user-static
+qemu-user-static-binfmt
+virt-manager
+
+# --- GENERAL ---
+ark
+avahi
+brother-mfc-l8690cdw
+cups
+ghostscript
+gvfs
+gvfs-afc
+gvfs-mtp
+gvfs-smb
+libva-nvidia-driver
+libva-utils
+nss-mdns
+polkit
+polkit-gnome
+signal-desktop
+slack-desktop
+thunar
+thunar-archive-plugin
+thunar-media-tags-plugin
+thunar-volman
+thunderbird
+udisks2
+
+# --- DICTATION ---
+onnxruntime-cuda
+voxtype
+wtype
+
+# --- GAMING ---
+flatpak
+
+# --- EXTRA (manuell installiert, nicht in installed.sh) ---
+bat
+beekeeper-studio-bin
+blesh
+chrpath
+cilium-cli
+clamav
+clamav-gui
+dive
+dotnet-sdk
+electerm
+evtest
+fastfetch
+firefox
+google-chrome
+headlamp-bin
+help2man
+hubble-bin
+hyprlock
+iptables
+jdownloader2
+keyd
+libation
+libfido2
+libmicrohttpd
+minio-client
+mpv
+nix
+npm
+nvidia-open-dkms
+oidc-agent
+onlyoffice-bin
+open-iscsi
+opencode-beta
+openscad
+opentofu
+orca-slicer-bin
+picard
+postgresql
+python-pyxdg
+python-vdf
+qbittorrent
+rclone
+rofi-emoji
+slirp4netns
+t3code-bin
+telegram-desktop-bin
+tumbler
+umu-launcher
+unsloth
+v4l2loopback-dkms
+v4l2loopback-utils
+vlc
+ydotool
+yubikey-manager
+yubikey-personalization
