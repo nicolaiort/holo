@@ -1,0 +1,42 @@
+#!/bin/bash
+# gotools baseline hash: {{ include "packages/gotools.txt" | sha256sum }}
+# Deklarative Go-Tools via chezmoi (run_onchange_before).
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/gotools.txt ändert.
+set -eu
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/packages/gotools.txt"
+
+if ! command -v go >/dev/null 2>&1; then
+  echo "gotools baseline: go fehlt (yay-Baseline prüfen), skip."
+  exit 0
+fi
+
+GOBIN="$(go env GOBIN)"
+[ -n "$GOBIN" ] || GOBIN="$(go env GOPATH)/bin"
+
+mapfile -t SPECS < <(grep -vE '^\s*(#|$)' "$PKG_FILE" || true)
+if [ "${#SPECS[@]}" -eq 0 ]; then
+  echo "gotools baseline: keine Tools in $PKG_FILE."
+  exit 0
+fi
+
+for spec in "${SPECS[@]}"; do
+  pkg="${spec%@*}"
+  want="${spec##*@}"
+  bin="$(basename "$pkg")"
+  if [ -x "$GOBIN/$bin" ]; then
+    have="$(go version -m "$GOBIN/$bin" 2>/dev/null | awk -v p="$pkg" '$1=="mod" && (p==$2 || index(p, $2"/")==1) {print $3; exit}')"
+    if [ "$have" = "$want" ]; then
+      echo "gotools baseline: $bin $want ok."
+      continue
+    elif [ -n "$have" ]; then
+      echo "gotools baseline: $bin $have -> $want, aktualisiere..."
+    else
+      echo "gotools baseline: $bin vorhanden (Version unbekannt), lasse es stehen."
+      continue
+    fi
+  else
+    echo "gotools baseline: $bin fehlt, installiere $want..."
+  fi
+  GOBIN="$GOBIN" go install "$spec"
+done

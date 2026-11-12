@@ -1,0 +1,28 @@
+#!/bin/bash
+# vscode-extensions baseline hash: {{ include "packages/vscode-extensions.txt" | sha256sum }}
+# Deklarative VS-Code-Extensions via chezmoi (run_onchange_before).
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/vscode-extensions.txt ändert.
+set -eu
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/packages/vscode-extensions.txt"
+
+if ! command -v code >/dev/null 2>&1; then
+  echo "vscode baseline: code fehlt (yay-Baseline prüfen), skip."
+  exit 0
+fi
+
+mapfile -t EXTS < <(grep -vE '^\s*(#|$)' "$PKG_FILE" || true)
+if [ "${#EXTS[@]}" -eq 0 ]; then
+  echo "vscode baseline: keine Extensions in $PKG_FILE."
+  exit 0
+fi
+
+INSTALLED="$(code --list-extensions 2>/dev/null || true)"
+for e in "${EXTS[@]}"; do
+  if echo "$INSTALLED" | grep -qxF "$e"; then
+    echo "vscode baseline: $e ok."
+  else
+    echo "vscode baseline: installiere $e..."
+    code --install-extension "$e"
+  fi
+done

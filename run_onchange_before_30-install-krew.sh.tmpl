@@ -1,0 +1,44 @@
+#!/bin/bash
+# krew baseline hash: {{ include "packages/krew.txt" | sha256sum }}
+# Deklarative kubectl-krew-Plugins via chezmoi (run_onchange_before).
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/krew.txt ändert.
+# Upgrades laufen weiter über `kubectl krew upgrade` – hier geht es nur um Anwesenheit.
+set -eu
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/packages/krew.txt"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+if ! command -v kubectl >/dev/null 2>&1; then
+  echo "krew baseline: kubectl fehlt (yay-Baseline prüfen), skip."
+  exit 0
+fi
+
+if ! kubectl krew list >/dev/null 2>&1; then
+  echo "krew nicht gefunden, installiere..."
+  TMPDIR="$(mktemp -d)"; trap 'rm -rf "$TMPDIR"' EXIT
+  (
+    cd "$TMPDIR" &&
+    OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+    ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+    KREW="krew-${OS}_${ARCH}" &&
+    curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+    tar zxvf "${KREW}.tar.gz" &&
+    ./"${KREW}" install krew
+  )
+fi
+
+mapfile -t PKGS < <(grep -vE '^\s*(#|$)' "$PKG_FILE" || true)
+if [ "${#PKGS[@]}" -eq 0 ]; then
+  echo "krew baseline: keine Plugins in $PKG_FILE."
+  exit 0
+fi
+
+INSTALLED="$(kubectl krew list 2>/dev/null || true)"
+for p in "${PKGS[@]}"; do
+  if echo "$INSTALLED" | grep -qx "$p"; then
+    echo "krew baseline: $p ok."
+  else
+    echo "krew baseline: installiere $p..."
+    kubectl krew install "$p"
+  fi
+done

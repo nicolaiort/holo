@@ -1,0 +1,7 @@
+# gotools baseline – deklarativ via chezmoi verwaltet
+# Inventarisiert 2026-11-12 via: go version -m ~/go/bin/*
+# Format: paketpfad@version – das Binary heißt wie das letzte Pfadsegment.
+# Das Skript installiert nur Fehlendes und aktualisiert bei Versionswechsel.
+github.com/git-chglog/git-chglog/cmd/git-chglog@v0.15.4
+github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.15.0
+go.uber.org/mock/mockgen@v0.6.0

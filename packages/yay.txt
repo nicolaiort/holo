@@ -22,6 +22,7 @@ vim
 # --- NETZWERK ---
 minio-client
 openbsd-netcat
+piavpn-bin
 rustscan
 traceroute
 wireguard-tools
@@ -106,6 +107,7 @@ cilium-cli
 dive
 flux-bin
 headlamp-bin
+helm
 hubble-bin
 k9s
 kind
@@ -115,6 +117,7 @@ oras
 podman
 podman-compose
 slirp4netns
+# kubeone liegt manuell in /usr/local/bin (kein Paket verfügbar)
 
 # --- AI ---
 codexbar-cli

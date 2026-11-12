@@ -1,0 +1,6 @@
+# krew baseline – deklarativ via chezmoi verwaltet
+# Inventarisiert 2026-11-12 via: kubectl krew list
+# ("krew" selbst steht nicht drin – das ist der Plugin-Manager, kein Plugin.)
+kubescape
+oidc-login
+radar

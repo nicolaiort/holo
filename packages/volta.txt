@@ -1,0 +1,7 @@
+# volta baseline – deklarativ via chezmoi verwaltet
+# Inventarisiert 2026-11-12 via: volta list
+# Format: tool@version – `volta install` pinnt exakt diese Version als Default.
+node@24.14.0
+yarn@4.14.1
+pnpm@10.32.1
+uipro-cli@2.2.3

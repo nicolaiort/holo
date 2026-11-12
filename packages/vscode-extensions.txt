@@ -1,0 +1,14 @@
+# vscode-extensions baseline – deklarativ via chezmoi verwaltet
+# Inventarisiert 2026-11-12 via: code --list-extensions
+# Das Skript installiert nur Fehlendes (install-only, kein Prune).
+adamhartford.vscode-base64
+davidanson.vscode-markdownlint
+eamodio.gitlens
+mhutchie.git-graph
+ms-kubernetes-tools.vscode-kubernetes-tools
+redhat.vscode-yaml
+shd101wyy.markdown-preview-enhanced
+sleistner.vscode-fileutils
+smcpeak.default-keys-windows
+svelte.svelte-vscode
+yzhang.markdown-all-in-one
