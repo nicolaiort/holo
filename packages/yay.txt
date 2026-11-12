@@ -10,6 +10,7 @@ atuin
 fzf
 starship
 vim
+bat
 
 # --- UTIL ---
 balena-etcher
@@ -20,6 +21,8 @@ openbsd-netcat
 rustscan
 traceroute
 wireguard-tools
+clamav
+clamav-gui
 
 # --- AV ---
 yt-dlp
@@ -33,11 +36,13 @@ greetd
 greetd-regreet
 grim
 hyprland
+hyprlock
 hyprpaper
 hyprpicker
 rofi
 rofi-calc
 rofimoji
+rofi-emoji
 slurp
 solaar
 ttf-firacode-nerd
@@ -55,8 +60,8 @@ kdeconnect
 
 # --- DEV ---
 actionlint
+beekeeper-studio-bin
 cloudflared
-flux-bin
 git
 git-crypt
 github-cli
@@ -64,23 +69,42 @@ gitleaks
 go
 go-task
 jq
-k9s
-kind
-kubectl
-kubeseal
-oras
 pandoc-cli
-podman
-podman-compose
+electerm
+minio-client
 python-weasyprint
 tea
 uv
 visual-studio-code-bin
 yq
+dotnet-sdk
+t3code-bin
+nix
+npm
+opentofu
+opencode-beta
+postgresql
+
+
+## --- Kubernetes/Containers ---
+flux-bin
+kind
+kubectl
+kubeseal
+k9s
+cilium-cli
+hubble-bin
+dive
+oras
+podman
+podman-compose
+headlamp-bin
 
 # --- AI ---
 codexbar-cli
 github-copilot-cli
+unsloth
+
 
 # --- VIRTUALISIERUNG ---
 dnsmasq
@@ -114,68 +138,42 @@ thunar-media-tags-plugin
 thunar-volman
 thunderbird
 udisks2
+firefox
+google-chrome
+jdownloader2
+onlyoffice-bin
+qbittorrent
+telegram-desktop-bin
+yubikey-manager
+yubikey-personalization
+python-vdf
+rclone
+slirp4netns
+tumbler
+umu-launcher
+v4l2loopback-dkms
+v4l2loopback-utils
+vlc
+ydotool
+nvidia-open-dkms
+oidc-agent
+open-iscsi
+evtest
+fastfetch
+keyd
+libation
+libfido2
+libmicrohttpd
+mpv
+openscad
+orca-slicer-bin
+picard
+python-pyxdg
 
 # --- DICTATION ---
 onnxruntime-cuda
 voxtype
 wtype
 
-# --- GAMING ---
+# --- Package Managers ---
 flatpak
-
-# --- EXTRA (manuell installiert, nicht in installed.sh) ---
-bat
-beekeeper-studio-bin
-blesh
-chrpath
-cilium-cli
-clamav
-clamav-gui
-dive
-dotnet-sdk
-electerm
-evtest
-fastfetch
-firefox
-google-chrome
-headlamp-bin
-help2man
-hubble-bin
-hyprlock
-iptables
-jdownloader2
-keyd
-libation
-libfido2
-libmicrohttpd
-minio-client
-mpv
-nix
-npm
-nvidia-open-dkms
-oidc-agent
-onlyoffice-bin
-open-iscsi
-opencode-beta
-openscad
-opentofu
-orca-slicer-bin
-picard
-postgresql
-python-pyxdg
-python-vdf
-qbittorrent
-rclone
-rofi-emoji
-slirp4netns
-t3code-bin
-telegram-desktop-bin
-tumbler
-umu-launcher
-unsloth
-v4l2loopback-dkms
-v4l2loopback-utils
-vlc
-ydotool
-yubikey-manager
-yubikey-personalization
