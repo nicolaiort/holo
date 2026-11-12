@@ -2,30 +2,51 @@
 # Kuratiert 2026-11-12 auf blackpanther: nur explizit installierte Pakete.
 # Regel: pacman -Qeq MINUS Calamares-Installer-Fenster (pacman.log 2026-03-11 bis inkl. grub-Transaktion)
 # PLUS als explizit gewollt aus installed.sh. Bootloader/Kernel/Firmware/Fonts/Audio stellt der Installer.
-# Gruppiert wie installed.sh. `git` ist bewusste Ausnahme (braucht chezmoi update).
+# Abschnitte nach Verwendungszweck (angelehnt an installed.sh), innen alphabetisch.
+# `git` ist bewusste Ausnahme (braucht chezmoi update).
 # Zeilen mit # und Leerzeilen ignoriert das Install-Skript.
 
 # --- CLI ---
 atuin
-fzf
-starship
-vim
 bat
-
-# --- UTIL ---
-balena-etcher
-chezmoi
+fastfetch
+fzf
 htop
 neofetch
+starship
+vim
+
+# --- NETZWERK ---
+minio-client
 openbsd-netcat
 rustscan
 traceroute
 wireguard-tools
+
+# --- SICHERHEIT ---
 clamav
 clamav-gui
+libfido2
+oidc-agent
+yubikey-manager
+yubikey-personalization
 
-# --- AV ---
+# --- MEDIA ---
+jdownloader2
+mpv
+picard
+qbittorrent
+vlc
 yt-dlp
+
+# --- INTERNET & KOMMUNIKATION ---
+firefox
+google-chrome
+kdeconnect
+signal-desktop
+slack-desktop
+telegram-desktop-bin
+thunderbird
 
 # --- DE ---
 cage
@@ -41,8 +62,8 @@ hyprpaper
 hyprpicker
 rofi
 rofi-calc
-rofimoji
 rofi-emoji
+rofimoji
 slurp
 solaar
 ttf-firacode-nerd
@@ -52,16 +73,12 @@ wlr-randr
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 
-# --- WEBCAM ---
-cameractrls
-
-# --- EXTRA-TOOLS ---
-kdeconnect
-
 # --- DEV ---
 actionlint
 beekeeper-studio-bin
 cloudflared
+dotnet-sdk
+electerm
 git
 git-crypt
 github-cli
@@ -69,42 +86,37 @@ gitleaks
 go
 go-task
 jq
+npm
+opencode-beta
+opentofu
 pandoc-cli
-electerm
-minio-client
+postgresql
 python-weasyprint
+t3code-bin
 tea
 uv
 visual-studio-code-bin
 yq
-dotnet-sdk
-t3code-bin
-nix
-npm
-opentofu
-opencode-beta
-postgresql
 
-
-## --- Kubernetes/Containers ---
+# --- KUBERNETES & CONTAINER ---
+cilium-cli
+dive
 flux-bin
+headlamp-bin
+hubble-bin
+k9s
 kind
 kubectl
 kubeseal
-k9s
-cilium-cli
-hubble-bin
-dive
 oras
 podman
 podman-compose
-headlamp-bin
+slirp4netns
 
 # --- AI ---
 codexbar-cli
 github-copilot-cli
 unsloth
-
 
 # --- VIRTUALISIERUNG ---
 dnsmasq
@@ -115,65 +127,62 @@ qemu-user-static
 qemu-user-static-binfmt
 virt-manager
 
-# --- GENERAL ---
+# --- DATEIEN ---
 ark
-avahi
-brother-mfc-l8690cdw
-cups
-ghostscript
 gvfs
 gvfs-afc
 gvfs-mtp
 gvfs-smb
-libva-nvidia-driver
-libva-utils
-nss-mdns
-polkit
-polkit-gnome
-signal-desktop
-slack-desktop
+rclone
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
-thunderbird
-udisks2
-firefox
-google-chrome
-jdownloader2
-onlyoffice-bin
-qbittorrent
-telegram-desktop-bin
-yubikey-manager
-yubikey-personalization
-python-vdf
-rclone
-slirp4netns
 tumbler
-umu-launcher
+udisks2
+
+# --- HARDWARE ---
+avahi
+brother-mfc-l8690cdw
+cameractrls
+cups
+evtest
+ghostscript
+keyd
+libva-nvidia-driver
+libva-utils
+nss-mdns
+nvidia-open-dkms
+open-iscsi
 v4l2loopback-dkms
 v4l2loopback-utils
-vlc
 ydotool
-nvidia-open-dkms
-oidc-agent
-open-iscsi
-evtest
-fastfetch
-keyd
-libation
-libfido2
-libmicrohttpd
-mpv
+
+# --- OFFICE & MAKER ---
+onlyoffice-bin
 openscad
 orca-slicer-bin
-picard
+
+# --- SYSTEM ---
+balena-etcher
+chezmoi
+flatpak
+nix
+polkit
+polkit-gnome
+
+# --- BIBLIOTHEKEN ---
+# (explizit markiert, eigentlich Abhängigkeiten - drin lassen, schadet nicht)
+libation
+libmicrohttpd
 python-pyxdg
+python-vdf
+
+# --- GAMING ---
+# (eigentliche Spiele laufen als Flatpak, siehe packages/flatpak.txt)
+umu-launcher
 
 # --- DICTATION ---
 onnxruntime-cuda
 voxtype
 wtype
-
-# --- Package Managers ---
-flatpak
