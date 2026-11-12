@@ -1,0 +1,4 @@
+# bun baseline – deklarativ via chezmoi verwaltet
+# Genau eine Zeile: die gewünschte bun-Version (Upstream-Tag ohne "bun-v"-Präfix).
+# Das Skript installiert exakt diese Version via https://bun.sh/install.
+1.4.4

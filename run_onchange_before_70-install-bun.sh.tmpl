@@ -1,0 +1,30 @@
+#!/bin/bash
+# bun baseline hash: {{ include "packages/bun-version.txt" | sha256sum }}
+# Deklaratives bun via chezmoi (run_onchange_before).
+# Läuft automatisch bei `chezmoi apply`, sobald sich packages/bun-version.txt ändert.
+set -eu
+
+PKG_FILE="{{ .chezmoi.sourceDir }}/packages/bun-version.txt"
+export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+WANT="$(grep -vE '^\s*(#|$)' "$PKG_FILE" | head -n 1 | tr -d '[:space:]')"
+if [ -z "$WANT" ]; then
+  echo "bun baseline: keine Version in $PKG_FILE."
+  exit 0
+fi
+
+if command -v bun >/dev/null 2>&1 && [ "$(bun --version)" = "$WANT" ]; then
+  echo "bun baseline: $WANT ok."
+  exit 0
+fi
+
+for dep in curl unzip; do
+  if ! command -v "$dep" >/dev/null 2>&1; then
+    echo "bun baseline: $dep fehlt, skip."
+    exit 0
+  fi
+done
+
+echo "bun baseline: installiere bun-v$WANT..."
+curl -fsSL https://bun.sh/install | bash -s -- "bun-v$WANT"
