@@ -90,7 +90,6 @@ go
 go-task
 jq
 npm
-opencode-beta
 opentofu
 pandoc-cli
 postgresql
@@ -119,8 +118,8 @@ slirp4netns
 # kubeone liegt manuell in /usr/local/bin (kein Paket verfügbar)
 
 # --- AI ---
-codexbar-cli
 github-copilot-cli
+opencode-beta
 
 # --- VIRTUALISIERUNG ---
 dnsmasq
@@ -180,10 +179,5 @@ libmicrohttpd
 python-pyxdg
 python-vdf
 
-# --- GAMING ---
-# (eigentliche Spiele laufen als Flatpak, siehe packages/flatpak.txt)
-umu-launcher
-
 # --- DICTATION ---
-voxtype
 wtype

@@ -9,3 +9,8 @@ nvidia-open-dkms
 
 # --- DICTATION (CUDA) ---
 onnxruntime-cuda
+voxtype
+
+# --- GAMING ---
+# (eigentliche Spiele laufen als Flatpak, siehe packages/flatpak.txt)
+umu-launcher
