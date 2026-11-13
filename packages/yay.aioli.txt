@@ -9,3 +9,6 @@ nvidia-open-dkms
 
 # --- DICTATION (CUDA) ---
 onnxruntime-cuda
+
+# --- AI ---
+unsloth
